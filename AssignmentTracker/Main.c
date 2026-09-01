@@ -416,13 +416,13 @@ void EditTask(void){
                 }if(taskchoice < 1 || taskchoice > AssignmentCount){
                     printf("Invalid input!\n");
                 }else{
-                    printf("You have selected assignment %d. Which element would you like to edit?\n", taskchoice);
-                    printf("[1] Name\n");
-                    printf("[2] Module\n");
-                    printf("[3] Days left\n");
-                    printf("[4] Hours needed\n");
-                    printf("[5] Priority\n");
-                    printf("[6] Grade\n");
+                    printf("\n  You have selected assignment %d. Which element would you like to edit?\n", taskchoice);
+                    printf("[1] Name: %s\n", assignments[taskchoice - 1].Name);
+                    printf("[2] Module: %s\n", assignments[taskchoice - 1].Module);
+                    printf("[3] Days left: %d\n", assignments[taskchoice - 1].DaysLeft);
+                    printf("[4] Hours needed: %d\n", assignments[taskchoice - 1].HoursNeeded);
+                    printf("[5] Priority: %d\n", assignments[taskchoice - 1].Priority);
+                    printf("[6] Grade: %.2f%%\n", assignments[taskchoice - 1].Grade);
                     printf("[7] Back\n");
                     printf("\nEnter your choice: ");
                     if (scanf("%d", &editchoice) != 1) {
@@ -475,14 +475,13 @@ void EditTask(void){
                 }if(taskchoice < 1 || taskchoice > ProjectCount){
                     printf("Invalid input!\n");
                 }else{
-                    printf("You have selected assignment %d. Which element would you like to edit?\n", taskchoice);
-                    printf("[1] Name\n");
-                    printf("[2] Module\n");
-                    printf("[3] Days left\n");
-                    printf("[4] Hours needed\n");
-                    printf("[5] Priority\n");
-                    printf("[6] Grade\n");
-                    printf("[7] Back\n");
+                    printf("\nYou have selected project %d. Which element would you like to edit?\n", taskchoice);
+                    printf("[1] Name: %s\n", projects[taskchoice - 1].Name);
+                    printf("[2] Module: %s\n", projects[taskchoice - 1].Module);
+                    printf("[3] Days left: %d\n", projects[taskchoice - 1].DaysLeft);
+                    printf("[4] Hours needed: %d\n", projects[taskchoice - 1].HoursNeeded);
+                    printf("[5] Priority: %d\n", projects[taskchoice - 1].Priority);
+                    printf("[6] Grade: %.2f%%\n", projects[taskchoice - 1].Grade);
                     printf("\nEnter your choice: ");
                     if (scanf("%d", &editchoice) != 1) {
                         printf("Invalid input!\n");
@@ -534,13 +533,13 @@ void EditTask(void){
                 }if(taskchoice < 1 || taskchoice > ExamCount){
                     printf("Invalid input!\n");
                 }else{
-                    printf("You have selected assignment %d. Which element would you like to edit?\n", taskchoice);
-                    printf("[1] Name\n");
-                    printf("[2] Module\n");
-                    printf("[3] Days left\n");
-                    printf("[4] Hours needed\n");
-                    printf("[5] Priority\n");
-                    printf("[6] Grade\n");
+                    printf("\nYou have selected exam %d. Which element would you like to edit?\n", taskchoice);
+                    printf("[1] Name: %s\n", exams[taskchoice - 1].Name);
+                    printf("[2] Module: %s\n", exams[taskchoice - 1].Module);
+                    printf("[3] Days left: %d\n", exams[taskchoice - 1].DaysLeft);
+                    printf("[4] Hours needed: %d\n", exams[taskchoice - 1].HoursNeeded);
+                    printf("[5] Priority: %d\n", exams[taskchoice - 1].Priority);
+                    printf("[6] Grade: %.2f%%\n", exams[taskchoice - 1].Grade);
                     printf("[7] Back\n");
                     printf("\nEnter your choice: ");
                     if (scanf("%d", &editchoice) != 1) {
