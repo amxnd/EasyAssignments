@@ -589,5 +589,5 @@ void EditTask(void){
 }
 
 void DeleteTask(void){
-    printf("\nDeleteTask functionality is not implemented yet.\n");
+    printf("\nDelete Task functionality is not implemented yet.\n");
 }
