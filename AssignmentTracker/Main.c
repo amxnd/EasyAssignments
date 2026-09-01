@@ -41,6 +41,7 @@ void SaveData(void);
 void LoadData(void);
 
 int main(void){
+    LoadData();
     int choice;
     do{
         printf("\nWhat do you want to do?\n");
@@ -74,6 +75,8 @@ int main(void){
                 DeleteTask();
                 break;
             case 6:
+                SaveData();
+                printf("Exiting program...\n");
                 break;    
             default:
                 printf("Invalid choice!\n");
@@ -589,5 +592,159 @@ void EditTask(void){
 }
 
 void DeleteTask(void){
-    printf("\nDeleteTask functionality is not implemented yet.\n");
+    int choice;
+    int taskchoice;
+    do{
+        if(AssignmentCount == 0 && ProjectCount == 0 && ExamCount == 0){
+            printf("\nYou have no tasks available.\n");
+            return;
+        }
+        printf("\n\n[1] View %d assignments available", AssignmentCount);
+        printf("\n[2] View %d projects available", ProjectCount);
+        printf("\n[3] View %d exams available", ExamCount);
+        printf("\n[4] Back");
+        printf("\nEnter your choice: ");
+        if (scanf("%d", &choice) != 1) {
+            printf("Invalid input!\n");
+            while (getchar() != '\n'){}
+            continue;
+        }    
+        switch(choice){
+            case 1:
+                ViewAssignments();
+                printf("Which assignment do you want to delete? [Back: 0] ");
+                scanf("%d", &taskchoice);
+                if(taskchoice == 0){
+                    break;
+                }if(taskchoice < 1 || taskchoice > AssignmentCount){
+                    printf("Invalid input!\n");
+                }else{
+                    for(int i = taskchoice - 1; i < AssignmentCount - 1; i++){
+                        assignments[i] = assignments[i + 1];
+                    }
+                    AssignmentCount--;
+                    printf("Assignment deleted successfully!\n");
+                }
+                break;
+            case 2:
+                ViewProjects();
+                printf("Which project do you want to delete? [Back: 0] ");
+                scanf("%d", &taskchoice);
+                if(taskchoice == 0){
+                    break;
+                }if(taskchoice < 1 || taskchoice > ProjectCount){
+                    printf("Invalid input!\n");
+                }else{
+                    for(int i = taskchoice - 1; i < ProjectCount - 1; i++){
+                        projects[i] = projects[i + 1];
+                    }
+                    ProjectCount--;
+                    printf("Project deleted successfully!\n");
+                }
+                break;
+            case 3:
+                ViewExams();
+                printf("Which exam do you want to delete? [Back: 0] ");
+                scanf("%d", &taskchoice);
+                if(taskchoice == 0){
+                    break;
+                }if(taskchoice < 1 || taskchoice > ExamCount){
+                    printf("Invalid input!\n");
+                }else{
+                    for(int i = taskchoice - 1; i < ExamCount - 1; i++){
+                        exams[i] = exams[i + 1];
+                    }
+                    ExamCount--;
+                    printf("Exam deleted successfully!\n");
+                }
+                break;
+            case 4:
+                break;
+        }
+    }while(choice!=4);
+}
+
+void LoadData(void){
+    FILE *file = fopen("data.txt", "r");
+    if(file == NULL){
+        printf("No data file found. Starting with empty data.\n");
+        return;
+    }
+    if (fscanf(file, "%d %d %d\n", &AssignmentCount, &ProjectCount, &ExamCount) != 3) {
+        fclose(file);
+        return;
+    }
+    for (int i = 0; i < AssignmentCount; i++) {
+        fscanf(file, " %[^\n]\n", assignments[i].Name);
+        fscanf(file, " %[^\n]\n", assignments[i].Module);
+        fscanf(file, "%d %d %d %f %d\n",
+               &assignments[i].DaysLeft,
+               &assignments[i].HoursNeeded,
+               &assignments[i].Priority,
+               &assignments[i].Grade,
+               &assignments[i].Completed);
+    }
+    for (int i = 0; i < ProjectCount; i++) {
+        fscanf(file, " %[^\n]\n", projects[i].Name);
+        fscanf(file, " %[^\n]\n", projects[i].Module);
+        fscanf(file, "%d %d %d %f %d\n",
+               &projects[i].DaysLeft,
+               &projects[i].HoursNeeded,
+               &projects[i].Priority,
+               &projects[i].Grade,
+               &projects[i].Completed);
+    }
+    for (int i = 0; i < ExamCount; i++) {
+        fscanf(file, " %[^\n]\n", exams[i].Name);
+        fscanf(file, " %[^\n]\n", exams[i].Module);
+        fscanf(file, "%d %d %d %f %d\n",
+               &exams[i].DaysLeft,
+               &exams[i].HoursNeeded,
+               &exams[i].Priority,
+               &exams[i].Grade,
+               &exams[i].Completed);
+    }
+    fclose(file);
+    printf("\nData loaded successfully!\n");
+}
+
+void SaveData(void) {
+    FILE *file = fopen("data.txt", "w");
+    if (file == NULL) {
+        printf("\nError opening file for saving!\n");
+        return;
+    }
+    fprintf(file, "%d %d %d\n", AssignmentCount, ProjectCount, ExamCount);
+    for (int i = 0; i < AssignmentCount; i++) {
+        fprintf(file, "%s\n%s\n%d %d %d %.2f %d\n",
+                assignments[i].Name,
+                assignments[i].Module,
+                assignments[i].DaysLeft,
+                assignments[i].HoursNeeded,
+                assignments[i].Priority,
+                assignments[i].Grade,
+                assignments[i].Completed);
+    }
+    for (int i = 0; i < ProjectCount; i++) {
+        fprintf(file, "%s\n%s\n%d %d %d %.2f %d\n",
+                projects[i].Name,
+                projects[i].Module,
+                projects[i].DaysLeft,
+                projects[i].HoursNeeded,
+                projects[i].Priority,
+                projects[i].Grade,
+                projects[i].Completed);
+    }
+    for (int i = 0; i < ExamCount; i++) {
+        fprintf(file, "%s\n%s\n%d %d %d %.2f %d\n",
+                exams[i].Name,
+                exams[i].Module,
+                exams[i].DaysLeft,
+                exams[i].HoursNeeded,
+                exams[i].Priority,
+                exams[i].Grade,
+                exams[i].Completed);
+    }
+    fclose(file);
+    printf("\nData saved successfully!\n");
 }
