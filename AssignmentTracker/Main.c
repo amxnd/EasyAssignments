@@ -40,6 +40,10 @@ void EditTask(void);
 void SaveData(void);
 void LoadData(void);
 
+void SelectSort(void);
+void AlphaSort(void);
+void UrgentSort(void);
+
 int main(void){
     LoadData();
     int choice;
@@ -119,13 +123,14 @@ void AddTask(void){
 }
 
 void AddAssignment(void){
+    int Running = 0;
     if(AssignmentCount >= MAX_ASSIGNMENTS){
         printf("Number of assignments cannot exceed 100!\n");
         return;
     }
-    printf("\nEnter assignment name: ");
+    printf("\nEnter assignment name [Back: 0] ");
     scanf(" %[^\n]", assignments[AssignmentCount].Name);
-
+    
     printf("Enter module: ");
     scanf(" %[^\n]", assignments[AssignmentCount].Module);
 
@@ -708,7 +713,7 @@ void LoadData(void){
     printf("\nData loaded successfully!\n");
 }
 
-void SaveData(void) {
+void SaveData(void){
     FILE *file = fopen("data.txt", "w");
     if (file == NULL) {
         printf("\nError opening file for saving!\n");
@@ -747,4 +752,24 @@ void SaveData(void) {
     }
     fclose(file);
     printf("\nData saved successfully!\n");
+}
+
+void SelectSort(void){
+    int choice = 0;
+    do{
+        printf("\nSorting method:");
+        printf("[1] By task number\n");
+        printf("[2] By task name\n");
+        printf("[3] By task due date\n");
+        printf("[4] Exit\n");
+
+    }while(1);
+}
+
+void AlphaSort(void){
+
+}
+
+void UrgentSort(void){
+
 }

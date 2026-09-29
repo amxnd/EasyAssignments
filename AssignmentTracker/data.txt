@@ -1,0 +1,19 @@
+4 1 1
+OIP Brightspace Module
+Global Readiness PLP
+52 2 1 0.00 1
+Enter Nanjing
+OIP23
+4 2 1 10.00 0
+SEU-NP China Culture % Engineering Immersion Programme 
+OIP22
+30 2 2 0.00 1
+Complete AssignmentTracker Code
+nil
+0 100 4 0.00 0
+WSS UAV 2027
+nil
+200 50 3 0.00 0
+38EEFD Master Exam
+38EEFD
+20 2 5 30.00 1
